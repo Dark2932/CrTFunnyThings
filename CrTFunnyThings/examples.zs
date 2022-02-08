@@ -6,4 +6,4 @@
 #priority 1
 #loader crafttweaker reloadableevents
 
-AFKPlace.makeProduct(<minecraft:lapis_block>.asBlock(), 2.5);
+AFKAutoSpawnItem.makeProduct(<minecraft:lapis_block>.asBlock(), 10);
