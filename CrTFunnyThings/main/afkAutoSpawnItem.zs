@@ -34,7 +34,7 @@ zenClass AFKAutoSpawnItem {
             val block = event.block;
             val pos = event.position;
             val ID1 = this.getBlockID(block);
-            if (!world.remote && player.isSneaking && ID1 == this.getBlockID(Block) && !isNull(item)) {
+            if (!world.remote && player.creative && player.isSneaking && ID1 == this.getBlockID(Block) && !isNull(item)) {
 
                 //save
                 if (!(<minecraft:flint>.matches(item))) {
@@ -98,10 +98,14 @@ zenClass AFKAutoSpawnItem {
                     for i, item in this.worldItem {
                         this.tick[i] = this.tick[i] + 1;
                         if ((this.tick[i] % (second * 20) == 0) && (this.switch[i] == 1)) {
-                            val position = this.position[i];
-                            val block = world.getBlock(position);
-                            if (this.getBlockID(this.worldBlock[i]) == this.getBlockID(Block)) {
-                                world.spawnEntity(item.withAmount(1).createEntityItem(world, position.x, position.y + 1, position.z));
+                            val pos = this.position[i];
+                            val x = pos.x;
+                            val y = pos.y;
+                            val z = pos.z;
+                            val block = world.getBlock(pos);
+                            val player = world.getClosestPlayer(x, y, z, 1.5, false);
+                            if (this.getBlockID(this.worldBlock[i]) == this.getBlockID(Block) && !isNull(player)) {
+                                world.spawnEntity(item.withAmount(1).createEntityItem(world, x, y + 1, z));
                             }
                             this.tick[i] = 0;
                         }
