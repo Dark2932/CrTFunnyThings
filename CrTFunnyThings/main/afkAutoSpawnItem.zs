@@ -3,7 +3,7 @@
     Flie: AFKAutoSpawnItem.zs
 */
 
-#priority 10000
+#priority 100000
 #loader crafttweaker reloadableevents
 import crafttweaker.data.IData;
 import crafttweaker.block.IBlock;
